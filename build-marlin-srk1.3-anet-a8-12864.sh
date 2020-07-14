@@ -37,8 +37,8 @@ function enableLinearAdvance()
     sed -i '/\/\/#define LIN_ADVANCE/c\#define LIN_ADVANCE' marlin/Marlin/Configuration_adv.h
     sed -i '/#define LIN_ADVANCE_K/c\#define LIN_ADVANCE_K 0.12' marlin/Marlin/Configuration_adv.h
 
-    // workaround bug on 32 bit boards, extruder does not work if LIN_ADVANCE is enabled
-    // https://github.com/MarlinFirmware/Marlin/issues/12983
+    # workaround bug on 32 bit boards, extruder does not work if LIN_ADVANCE is enabled
+    # https://github.com/MarlinFirmware/Marlin/issues/12983
     sed -i '/#define MINIMUM_STEPPER_PULSE/c\#define MINIMUM_STEPPER_PULSE 1' marlin/Marlin/Configuration_adv.h
 }
 
@@ -80,20 +80,6 @@ setStepperResolution256()
     sed -i '/#define Z_MICROSTEPS/c\#define Z_MICROSTEPS 256' marlin/Marlin/Configuration_adv.h
     sed -i '/#define Z2_MICROSTEPS/c\#define Z2_MICROSTEPS 256' marlin/Marlin/Configuration_adv.h
     sed -i '/#define E0_MICROSTEPS/c\#define E0_MICROSTEPS 256' marlin/Marlin/Configuration_adv.h
-}
-
-setStepperResolution16()
-{
-    sed -i '/#define X_MICROSTEPS/c\#define X_MICROSTEPS 16' marlin/Marlin/Configuration_adv.h
-    sed -i '/#define Y_MICROSTEPS/c\#define Y_MICROSTEPS 16' marlin/Marlin/Configuration_adv.h
-    sed -i '/#define Z_MICROSTEPS/c\#define Z_MICROSTEPS 16' marlin/Marlin/Configuration_adv.h
-    sed -i '/#define Z2_MICROSTEPS/c\#define Z2_MICROSTEPS 16' marlin/Marlin/Configuration_adv.h
-    sed -i '/#define E0_MICROSTEPS/c\#define E0_MICROSTEPS 16' marlin/Marlin/Configuration_adv.h
-}
-
-function setStepsPerAxis16Steps()
-{
-    sed -i '/#define DEFAULT_AXIS_STEPS_PER_UNIT/c\#define DEFAULT_AXIS_STEPS_PER_UNIT   { 100, 100, 400, 100 }' marlin/Marlin/Configuration.h
 }
 
 function setStepsPerAxis256Steps()
@@ -151,8 +137,6 @@ invertStepMotors
 invertEndStops
 setStepperResolution256
 setStepsPerAxis256Steps
-#setStepperResolution16
-#setStepsPerAxis16Steps
 setDimensions
 enablePause
 enableBedAutoLeveling
