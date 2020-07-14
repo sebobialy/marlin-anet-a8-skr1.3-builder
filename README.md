@@ -5,7 +5,7 @@ This is simple bash scipt that allows to build fully working Malin firmware on S
 
 Just put it anywhere on your Linux box (Windows Linux subsystem not tested) and press enter.
 
-I will:
+It will:
 1) Download PlatformIO to local directory
 2) Configure PlatformIO to use with SKR1.3
 3) Download Malin branch for SKR1.3
