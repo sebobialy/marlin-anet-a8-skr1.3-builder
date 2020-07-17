@@ -92,8 +92,11 @@ function setDimensions()
     sed -i '/#define X_BED_SIZE/c\#define X_BED_SIZE 220' marlin/Marlin/Configuration.h
     sed -i '/#define Y_BED_SIZE/c\#define Y_BED_SIZE 220' marlin/Marlin/Configuration.h
     sed -i '/#define X_MIN_POS/c\#define X_MIN_POS -34' marlin/Marlin/Configuration.h
+    sed -i '/#define X_MAX_POS/c\#define X_MAX_POS 230' marlin/Marlin/Configuration.h
     sed -i '/#define Y_MIN_POS/c\#define Y_MIN_POS -8' marlin/Marlin/Configuration.h
+    sed -i '/#define Y_MAX_POS/c\#define Y_MAX_POS 234' marlin/Marlin/Configuration.h
     sed -i '/#define Z_MAX_POS/c\#define Z_MAX_POS 230' marlin/Marlin/Configuration.h
+    sed -i '/#define MESH_INSET/c\#define MESH_INSET 25' marlin/Marlin/Configuration.h
 }
 
 function enablePause()
@@ -111,6 +114,7 @@ function enableBedAutoLeveling()
     sed -i '/#define NOZZLE_TO_PROBE_OFFSET/c\#define NOZZLE_TO_PROBE_OFFSET { -22, -36, 0 }' marlin/Marlin/Configuration.h
     sed -i '/#define Z_SAFE_HOMING/c\#define Z_SAFE_HOMING' marlin/Marlin/Configuration.h
     sed -i '/#define RESTORE_LEVELING_AFTER_G28/c\#define RESTORE_LEVELING_AFTER_G28' marlin/Marlin/Configuration.h
+    sed -i '/#define GRID_MAX_POINTS_X 10/c\#define GRID_MAX_POINTS_X 4' marlin/Marlin/Configuration.h
 }
 
 function build()
