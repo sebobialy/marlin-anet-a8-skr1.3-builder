@@ -18,13 +18,29 @@ function downloadNXPLPCPlatform()
 function downloadMarlin()
 {
     if [ ! -d marlin ]; then
-        svn export "https://github.com/bigtreetech/BIGTREETECH-SKR-V1.3.git/trunk/BTT SKR V1.3/firmware/Marlin-bugfix-2.0.x" marlin
+        svn export "https://github.com/MarlinFirmware/Marlin/tags/2.0.5.4" marlin
     fi
 }
 
-function setPrinterName()
+function configureBoard()
+{
+    sed -i '/#define MOTHERBOARD/c\#define MOTHERBOARD BOARD_BTT_SKR_V1_3' marlin/Marlin/Configuration.h
+    sed -i '/default_envs = mega2560/c\default_envs = LPC1768' marlin/platformio.ini
+    sed -i '/#define EEPROM_SETTINGS/c\#define EEPROM_SETTINGS' marlin/Marlin/Configuration.h
+    sed -i '/#define SERIAL_PORT_2 -1/c\#define SERIAL_PORT_2 -1' marlin/Marlin/Configuration.h
+    sed -i '/#define SDSUPPORT/c\#define SDSUPPORT' marlin/Marlin/Configuration.h
+    sed -i '/#define SDCARD_CONNECTION/c\#define SDCARD_CONNECTION ONBOARD' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define SD_DETECT_STATE HIGH/c\#define SD_DETECT_STATE HIGH' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define STATUS_MESSAGE_SCROLLING/c\#define STATUS_MESSAGE_SCROLLING' marlin/Marlin/Configuration_adv.h
+}
+
+function configurePrinter()
 {
     sed -i '/#define CUSTOM_MACHINE_NAME/c\#define CUSTOM_MACHINE_NAME \"Anet-A8\"' marlin/Marlin/Configuration.h
+    sed -i '/#define DEFAULT_NOMINAL_FILAMENT_DIA 3.0/c\#define DEFAULT_NOMINAL_FILAMENT_DIA 1.75' marlin/Marlin/Configuration.h
+    sed -i '/#define TEMP_SENSOR_BED 0/c\#define TEMP_SENSOR_BED 1' marlin/Marlin/Configuration.h
+    sed -i '/#define NUM_Z_STEPPER_DRIVERS 1/c\#define NUM_Z_STEPPER_DRIVERS 2' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define BED_MAXTEMP/c\#define BED_MAXTEMP 110' marlin/Marlin/Configuration.h
 }
 
 function enableCR10StockDisplay()
@@ -115,6 +131,18 @@ function enableBedAutoLeveling()
     sed -i '/#define Z_SAFE_HOMING/c\#define Z_SAFE_HOMING' marlin/Marlin/Configuration.h
     sed -i '/#define RESTORE_LEVELING_AFTER_G28/c\#define RESTORE_LEVELING_AFTER_G28' marlin/Marlin/Configuration.h
     sed -i '/#define GRID_MAX_POINTS_X 10/c\#define GRID_MAX_POINTS_X 4' marlin/Marlin/Configuration.h
+    sed -i '/#define G26_MESH_VALIDATION/c\#define G26_MESH_VALIDATION' marlin/Marlin/Configuration.h
+}
+
+function enableNozzleClean()
+{
+    sed -i '/#define NOZZLE_CLEAN_FEATURE/c\#define NOZZLE_CLEAN_FEATURE' marlin/Marlin/Configuration.h
+}
+
+function enableAbout()
+{
+    sed -i '/#define LCD_INFO_MENU/c\#define LCD_INFO_MENU' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define PRINTCOUNTER/c\#define PRINTCOUNTER' marlin/Marlin/Configuration.h
 }
 
 function build()
@@ -132,7 +160,9 @@ function extractFirmware()
 downloadPlatfromIO
 downloadNXPLPCPlatform
 downloadMarlin
-setPrinterName
+configureBoard
+configurePrinter
+#setPrinterName
 enableCR10StockDisplay
 enableLinearAdvance
 enableTMC2208Drivers
@@ -144,5 +174,7 @@ setStepsPerAxis256Steps
 setDimensions
 enablePause
 enableBedAutoLeveling
+enableNozzleClean
+enableAbout
 build
 extractFirmware
