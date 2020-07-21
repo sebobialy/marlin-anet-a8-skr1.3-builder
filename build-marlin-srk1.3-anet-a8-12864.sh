@@ -68,6 +68,11 @@ function enableLinearAdvance()
     sed -i '/#define MINIMUM_STEPPER_PULSE/c\#define MINIMUM_STEPPER_PULSE 1' marlin/Marlin/Configuration_adv.h
 }
 
+function enableSCurve()
+{
+    sed -i '/#define S_CURVE_ACCELERATION/c\#define S_CURVE_ACCELERATION' marlin/Marlin/Configuration.h
+}
+
 function enableTMC2208Drivers()
 {
     sed -i '/#define X_DRIVER_TYPE/c\#define X_DRIVER_TYPE TMC2208' marlin/Marlin/Configuration.h
@@ -174,6 +179,7 @@ configureBoard
 configurePrinter
 enableCR10StockDisplay
 enableLinearAdvance
+enableSCurve
 enableTMC2208Drivers
 enableProgress
 invertStepMotors
