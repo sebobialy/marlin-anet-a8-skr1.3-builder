@@ -31,7 +31,15 @@ function configureBoard()
     sed -i '/#define SDSUPPORT/c\#define SDSUPPORT' marlin/Marlin/Configuration.h
     sed -i '/#define SDCARD_CONNECTION/c\#define SDCARD_CONNECTION ONBOARD' marlin/Marlin/Configuration_adv.h
     sed -i '/#define SD_DETECT_STATE HIGH/c\#define SD_DETECT_STATE HIGH' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define SD_CHECK_AND_RETRY/c\#define SD_CHECK_AND_RETRY' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define LONG_FILENAME_HOST_SUPPORT/c\#define LONG_FILENAME_HOST_SUPPORT' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define SCROLL_LONG_FILENAMES/c\#define SCROLL_LONG_FILENAMES' marlin/Marlin/Configuration_adv.h
     sed -i '/#define STATUS_MESSAGE_SCROLLING/c\#define STATUS_MESSAGE_SCROLLING' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define MENU_HOLLOW_FRAME/c\//#define MENU_HOLLOW_FRAME' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define XYZ_HOLLOW_FRAME/c\//#define XYZ_HOLLOW_FRAME' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define STATUS_FAN_FRAMES/c\#define STATUS_FAN_FRAMES 4' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define BOOT_MARLIN_LOGO_ANIMATED/c\#define BOOT_MARLIN_LOGO_ANIMATED' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define LCD_SHOW_E_TOTAL/c\#define LCD_SHOW_E_TOTAL' marlin/Marlin/Configuration_adv.h
 }
 
 function configurePrinter()
@@ -41,6 +49,8 @@ function configurePrinter()
     sed -i '/#define TEMP_SENSOR_BED 0/c\#define TEMP_SENSOR_BED 1' marlin/Marlin/Configuration.h
     sed -i '/#define NUM_Z_STEPPER_DRIVERS 1/c\#define NUM_Z_STEPPER_DRIVERS 2' marlin/Marlin/Configuration_adv.h
     sed -i '/#define BED_MAXTEMP/c\#define BED_MAXTEMP 110' marlin/Marlin/Configuration.h
+    sed -i '/#define BABYSTEPPING/c\#define BABYSTEPPING' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define BABYSTEP_WITHOUT_HOMING/c\#define BABYSTEP_WITHOUT_HOMING' marlin/Marlin/Configuration_adv.h
 }
 
 function enableCR10StockDisplay()
@@ -162,7 +172,6 @@ downloadNXPLPCPlatform
 downloadMarlin
 configureBoard
 configurePrinter
-#setPrinterName
 enableCR10StockDisplay
 enableLinearAdvance
 enableTMC2208Drivers
