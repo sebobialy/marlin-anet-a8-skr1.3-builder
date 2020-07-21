@@ -1,4 +1,3 @@
-# marlin-anet-a8-skr1.3-builder
 Anet A8 Malin firmware builder for SKR 1.3
 
 This is simple bash scipt that allows to build fully working Malin firmware on SKR1.3 for use with slighty modified Anet A8.
@@ -19,13 +18,16 @@ Features enabled by default:
 2) TMC2208 control
 3) Pause
 4) Auto leveling (unified)
+5) S-Curve
 
 Please notice that this is not compatible with stock Anet A8 because:
 
-a) it was modified to use with 128x64 LCD CR10 (warning: using Anet 128x64, hardware modifications required for this to work at all, conectors are similar but different, do not connect original LCD also without modification!)
+a) it was modified to use with 128x64 CR10 LCD (warning: hardware modifications required for using Anet 128x64 to work at all, conectors are similar but different, do not connect original 2x16 LCD without modification also!)
 
 b) it is prepared to use induction bed leveling sensor (might work just fine with stock endstop, however You will get bunch of unused items in menu).
 
 Both features can be easely disabled within script, just comment lines that You do not want to be injected into Malin config.
+
+Compiled "FIRMWARE.BIN" provided, however please compile it yourself!
 
 Sebastian Biały.
