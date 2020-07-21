@@ -160,6 +160,13 @@ function enableAbout()
     sed -i '/#define PRINTCOUNTER/c\#define PRINTCOUNTER' marlin/Marlin/Configuration.h
 }
 
+function enableGames()
+{
+    sed -i '/#define MARLIN_BRICKOUT/c\#define MARLIN_BRICKOUT' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define MARLIN_INVADERS/c\#define MARLIN_INVADERS' marlin/Marlin/Configuration_adv.h
+    sed -i '/#define MARLIN_SNAKE/c\#define MARLIN_SNAKE' marlin/Marlin/Configuration_adv.h
+}
+
 function build()
 {
     cd marlin
@@ -191,5 +198,6 @@ enablePause
 enableBedAutoLeveling
 enableNozzleClean
 enableAbout
+enableGames
 build
 extractFirmware
