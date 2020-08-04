@@ -113,6 +113,14 @@ setStepperResolution256()
     sed -i '/#define E0_MICROSTEPS/c\#define E0_MICROSTEPS 256' marlin/Marlin/Configuration_adv.h
 }
 
+setAccelerations()
+{
+    sed -i '/#define DEFAULT_MAX_ACCELERATION/c\#define DEFAULT_MAX_ACCELERATION { 1500, 1500, 100, 5000 }' marlin/Marlin/Configuration.h
+    sed -i '/#define DEFAULT_ACCELERATION/c\#define DEFAULT_ACCELERATION 1500' marlin/Marlin/Configuration.h
+    sed -i '/#define DEFAULT_RETRACT_ACCELERATION/c\#define DEFAULT_RETRACT_ACCELERATION 1500' marlin/Marlin/Configuration.h
+    sed -i '/#define DEFAULT_TRAVEL_ACCELERATION/c\#define DEFAULT_TRAVEL_ACCELERATION 1500' marlin/Marlin/Configuration.h
+}
+
 function setStepsPerAxis256Steps()
 {
     sed -i '/#define DEFAULT_AXIS_STEPS_PER_UNIT/c\#define DEFAULT_AXIS_STEPS_PER_UNIT   { 1600, 1600, 6400, 1600 }' marlin/Marlin/Configuration.h
@@ -193,6 +201,7 @@ invertStepMotors
 invertEndStops
 setStepperResolution256
 setStepsPerAxis256Steps
+setAccelerations
 setDimensions
 enablePause
 enableBedAutoLeveling
