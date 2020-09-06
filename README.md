@@ -2,7 +2,7 @@ Anet A8 Malin firmware builder for SKR 1.3
 
 This is simple bash scipt that allows to build fully working Malin firmware on SKR1.3 for use with slighty modified Anet A8.
 
-Just put it anywhere on your Linux box (Windows Linux subsystem not tested) and press enter.
+Just put it anywhere on your Linux box or Windows Subsystem for Linux (Ubuntu 20.04 tested), add executable attribute (chmod +x) and press enter.
 
 It will:
 1) Download PlatformIO to local directory
